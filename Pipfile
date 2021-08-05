@@ -8,6 +8,8 @@ boto3 = "*"
 django = "*"
 psycopg2-binary = "*"
 pillow = "*"
+environ = "*"
+django-environ = "*"
 
 [dev-packages]
 

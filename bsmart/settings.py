@@ -26,7 +26,14 @@ SECRET_KEY = 'django-insecure-*a94uhvk0e0k6^$^f*@z+h%vp8to80d86iz)8!3@(!_(e(#3lh
 DEBUG = True
 
 ALLOWED_HOSTS = []
-
+import environ
+env = environ.Env(
+    POSTGRES_MAIN_DB_HOST=(str, ""),
+    POSTGRES_MAIN_DB_PORT=(int, 0),
+    POSTGRES_MAIN_DB_NAME=(str, ""),
+    POSTGRES_MAIN_DB_USER=(str, ""),
+    POSTGRES_MAIN_DB_PASSWORD=(str, ""),
+    )
 
 # Application definition
 
@@ -88,11 +95,11 @@ WSGI_APPLICATION = 'bsmart.wsgi.application'
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        'HOST': 'localhost' ,
-        'PORT': 5432,
-        'NAME': 'bsmart',
-        'USER':'postgres',
-        'PASSWORD': 'fall@1234',
+        "HOST": env("POSTGRES_MAIN_DB_HOST"),
+        "PORT": env("POSTGRES_MAIN_DB_PORT"),
+        "NAME": env("POSTGRES_MAIN_DB_NAME"),
+        "USER": env("POSTGRES_MAIN_DB_USER"),
+        "PASSWORD": env("POSTGRES_MAIN_DB_PASSWORD"),
         'CONN_MAX_AGE': 0
     },
 }
