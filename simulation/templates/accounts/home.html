@@ -1,0 +1,45 @@
+{% extends 'accounts/main.html' %} {% block content %}
+<!-- <div class="row" style="margin-top: 10%; margin-left: 5%; margin-right: 5%;">
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="{% url 'attaque' %}" class="btn btn-primary"> attaque Faire une simulation</a>
+            </div>
+        </div>
+    </div>
+    <div class="col-sm-6">
+        <div class="card">
+            <div class="card-body">
+                <h5 class="card-title">Special title treatment</h5>
+                <p class="card-text">With supporting text below as a natural lead-in to additional content.</p>
+                <a href="{% url 'alerte' %}" class="btn btn-primary"> alert Faire une simulation</a>
+            </div>
+        </div>
+    </div>
+</div> -->
+<div class="card bg-light mb-3" style="max-width: 100%; margin-top: 40px; margin-left: 50px; margin-right: 50px;">
+    <div class="card-header" style="text-align: center;">Header</div>
+    <div class="card-body" style="text-align: center;">
+        <h5 class="card-title">Light card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+    </div>
+</div>
+<div class="card text-white bg-warning mb-3" style="max-width: 50rem; margin-left: 50px; margin-top: 50px; ">
+    <div class="card-header">Alerte</div>
+    <div class="card-body">
+        <h5 class="card-title">Primary card title</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="{% url 'alerte' %}" class="btn btn-info"> alert Faire une simulation</a>
+    </div>
+</div>
+<div class="card text-white bg-danger mb-3" style="max-width: 50rem; margin-left: 50px; margin-top: 50px;">
+    <div class="card-header">Header</div>
+    <div class="card-body">
+        <h5 class="card-title">Gestion des attaques</h5>
+        <p class="card-text">Some quick example text to build on the card title and make up the bulk of the card's content.</p>
+        <a href="{% url 'attaque' %}" class="btn btn-info"> attaque Faire une simulation</a>
+    </div>
+</div>
+{% endblock content %}
