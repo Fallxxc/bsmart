@@ -6,9 +6,17 @@ urlpatterns = [
     path('login/',views.loginPage, name = 'login'), 
     path('logout/',views.logoutUser, name = "logout"),
 
-    path('',views.home, name = ""), 
-
+    path('',views.home, name = "home"), 
     path('alerte/',views.alerte, name = "alerte"), 
     path('attaque/',views.attaque, name = "attaque"), 
+    
+    path('cate/',views.cate, name = "cate"), 
+    path('vitess_p/',views.vitess_p, name = "vitess_p"), 
+    path('frequence/',views.frequence, name = "frequence"), 
+    path('profondeur/',views.profondeur, name = "profondeur"), 
+    path('niveauControle/',views.niveauControle, name = "niveauControle"), 
+    path('niveauPerte/',views.niveauPerte, name = "niveauPerte"), 
 
+    path('simulation/',views.simulation, name = "simulation"), 
+#
 ]

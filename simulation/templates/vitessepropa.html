@@ -1,14 +1,6 @@
 {% extends 'accounts/main.html' %} {% block content %}
-<form method="POST" action="{% url  'simulation' %}">
+<form method="POST" action="{% url  'frequence' %}">
     {% csrf_token %}
-    <div class="container mt-sm-5 my-1">
-        <div class="question ml-sm-5 pl-sm-5 pt-2">
-            <div class="py-2 h5"><b>Cathegorie ?</b></div>
-            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
-                {% for i in categorie %}<label class="options">{{ i.cathegorie_name }}<input type="radio" name="categorie" value = "{{ i }}" > <span class="checkmark"></span> </label>{% endfor %}
-            </div>
-        </div>
-    </div>
     <div class="container mt-sm-5 my-1">
         <div class="question ml-sm-5 pl-sm-5 pt-2">
             <div class="py-2 h5"><b>vitesse de Propagation?</b></div>
@@ -16,50 +8,15 @@
                 {% for i in vitessePropagation %} <label class="options">{{ i }} <input type="radio" name="vitessePropagation" value = "{{ i }}"><span class="checkmark"></span></label>{% endfor %}
             </div>
         </div>
-    </div>
+        <div class="d-flex align-items-center pt-3">
+            <div class="ml-auto mr-sm-5">
+                <button class="btn btn-success" type="submit" name="save" value="save" id="recup_checked">save</button>
+                <!-- <a href="{% url  'simulation' %}"> <button class="btn btn-success">voir la fiche</a></button> -->
 
-    <div class="container mt-sm-5 my-1">
-        <div class="question ml-sm-5 pl-sm-5 pt-2">
-            <div class="py-2 h5"><b>Frequence</b></div>
-            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
-                {% for i in frequence %} <label class="options">{{ i }} <input type="radio" name="frequence" value = "{{ i }}"><span class="checkmark"></span></label>{% endfor %}
+                </button>
             </div>
         </div>
-    </div>
 
-    <div class="container mt-sm-5 my-1">
-        <div class="question ml-sm-5 pl-sm-5 pt-2">
-            <div class="py-2 h5"><b>Profondeur/ampleur</b></div>
-            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
-                {% for i in profondeur %} <label class="options">{{ i }} <input type="radio" name="profondeur" value = "{{ i }}"><span class="checkmark"></span></label>{% endfor %}
-            </div>
-        </div>
-    </div>
-
-    <div class="container mt-sm-5 my-1">
-        <div class="question ml-sm-5 pl-sm-5 pt-2">
-            <div class="py-2 h5"><b>Niveau de contrôle</b></div>
-            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
-                {% for i in niveauControle %} <label class="options">{{ i }} <input type="radio" name="niveauControle" value = "{{ i }}"><span class="checkmark"></span></label>{% endfor %}
-            </div>
-        </div>
-    </div>
-    <div class="container mt-sm-5 my-1">
-        <div class="question ml-sm-5 pl-sm-5 pt-2">
-            <div class="py-2 h5"><b>Niveau de perte</b></div>
-            <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
-                {% for i in niveauPerte %} <label class="options">{{ i }} <input type="radio" name="niveauPerte" value = "{{ i }}"><span class="checkmark"></span></label>{% endfor %}
-            </div>
-        </div>
-    </div>
-    <!-- le submit et la redirection vers simultation  avec un href ce qui n'est pas logique-->
-    <div class="d-flex align-items-center pt-3">
-        <div class="ml-auto mr-sm-5">
-            <button class="btn btn-success" type="submit" name="save" value="save" id="recup_checked">save</button>
-            <!-- <a href="{% url  'simulation' %}"> <button class="btn btn-success">voir la fiche</a></button> -->
-
-            </button>
-        </div>
     </div>
 </form>
 

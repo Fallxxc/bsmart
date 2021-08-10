@@ -1,0 +1,19 @@
+{% extends 'accounts/main.html' %} {% block content %} {% load static %}
+<div class="container ">
+    <div class="card-columns" style="padding: 10px; margin: 20px;">
+        <div class="card" style="width:50rem; border:5px rgb(240, 203, 203) solid; align-items: center;">
+            <img class="card-img-top" src="http://kmit.in/emagazine/wp-content/uploads/2018/02/karnataka-results.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title">Categorie: {{ recup.0}}</h5>
+                <p class="card-text">Vitesse de Propagation: {{ recup.1}}</p>
+                <p class="card-text">Fréquence: {{ recup.2}} </p>
+                <p class="card-text">Profonduer: {{ recup.3}}</p>
+                <p class="card-text">Niveau de conrôle: {{ recup.4}}</p>
+                <p class="card-text">Niveau de perte: {{ recup.5}}</p>
+                {{ filename}}
+                <button> <a href="{% static filename %}">Voir la fiche d'action</a></button>
+
+                <h5>All the best for next quiz!</h5>
+            </div>
+        </div>
+        {% endblock content %}

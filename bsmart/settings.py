@@ -145,7 +145,7 @@ import os
 STATIC_URL = '/static/'
 STATICFILES_DIRS = [
   BASE_DIR / 'static',
-  BASE_DIR / 'alerte' /'static',
+#   BASE_DIR / 'alerte' /'static',
   BASE_DIR / 'simulation' /'static'
 
 ]
