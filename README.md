@@ -17,3 +17,5 @@ These instructions will get you a copy of the project up and running on your loc
 ### migrations
 
 1)Run 'python manage.py migrate' for applying all the migrations.
+## collect static files
+1) Run 'python manage.py collectstatic'
