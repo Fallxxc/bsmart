@@ -1,28 +1,137 @@
-{% extends 'accounts/main.html' %} {% block content %}
-<form method="POST" action="{% url  'profondeur' %}">
-    {% csrf_token %}
+ {% extends 'accounts/main.html' %} {% block content %}
 
-    <div class="container mt-sm-5 my-1">
+<div style="margin-top: 20px; width: 90%; margin-left: 5%; margin-right: 9%;">
+    <h5 class="section-title h1" style="text-align: center;">&nbsp;</h5>
+    <div class="row">
+        <!-- Team member -->
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="image-flip">
+                <div class="mainflip flip-0">
+                    <div class="frontside">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <p><img class=" img-fluid" src="https://static.lexpress.fr/medias_12332/w_1004,h_753,c_crop,x_207,y_81/w_640,h_358,c_fill,g_center/v1625828456/hausse-du-nombre-de-cas-de-covid-19-dans-le-monde_6314376.jpeg" alt="card image"></p>
+                                <h4 class="card-title">Vitesse de propagation </h4>
+                                <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="backside">
+                        <div class="card">
+                            <div class="card-body text-center mt-4">
+                                <h4 class="card-title">Catastrophe naturelle</h4>
+                                <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <i class="fa fa-skype"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <i class="fa fa-google"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-xs-12 col-sm-6 col-md-4">
+            <div class="image-flip">
+                <div class="mainflip flip-0">
+                    <div class="frontside">
+                        <div class="card">
+                            <div class="card-body text-center">
+                                <p><img class=" img-fluid" src="https://lh3.googleusercontent.com/proxy/gJubUSkTEHgc92Z78aY3IkpW2yZKy00NThAig57oqHZ3QuJqj2TGRclfEfXla_AhUgL34KiptAqbYanGEcWPsZdpFuV2yIM-QbHk22n4KCiogPsbgfHfEuX8aL5KNweT2A" alt="card image"></p>
+                                <h4 class="card-title">Vitesse de propagation </h4>
+                                <p class="card-text">This is basic card with image on top, title, description and button.</p>
+                                <a href="https://www.fiverr.com/share/qb8D02" class="btn btn-primary btn-sm"><i class="fa fa-plus"></i></a>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="backside">
+                        <div class="card">
+                            <div class="card-body text-center mt-4">
+                                <h4 class="card-title">Catastrophe naturelle</h4>
+                                <p class="card-text">This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.This is basic card with image on top, title, description and button.</p>
+                                <ul class="list-inline">
+                                    <li class="list-inline-item">
+                                        <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <i class="fa fa-facebook"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <i class="fa fa-twitter"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <i class="fa fa-skype"></i>
+                                        </a>
+                                    </li>
+                                    <li class="list-inline-item">
+                                        <a class="social-icon text-xs-center" target="_blank" href="https://www.fiverr.com/share/qb8D02">
+                                            <i class="fa fa-google"></i>
+                                        </a>
+                                    </li>
+                                </ul>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="d-flex align-items-center pt-3 ">
+            <div class="ml-auto mr-sm-5 "><button class="btn btn-success " type="submit " name="save " value="save " id="toggle">Choisir une categorie pour une simulation</button></div>
+        </div>
+    </div>
+</div>
+<!-- Team -->
+<!-- -------------------------------------------------------on ne touche pas -->
+
+
+<div class="container mt-sm-5 my-1" id="third">
+    <form method="POST" action="{% url 'profondeur' %} ">
+        {% csrf_token %}
+
         <div class="question ml-sm-5 pl-sm-5 pt-2">
             <div class="py-2 h5"><b>Frequence</b></div>
             <div class="ml-md-3 ml-sm-3 pl-md-5 pt-sm-0 pt-3" id="options">
                 {% for i in frequence %} <label class="options">{{ i }} <input type="radio" name="frequence" value = "{{ i }}"><span class="checkmark"></span></label>{% endfor %}
             </div>
         </div>
-        <div class="d-flex align-items-center pt-3">
-            <div class="ml-auto mr-sm-5">
-                <button class="btn btn-success" type="submit" name="save" value="save" id="recup_checked">save</button>
-                <!-- <a href="{% url  'simulation' %}"> <button class="btn btn-success">voir la fiche</a></button> -->
-
-                </button>
+        <hr>
+        <div class="d-flex align-items-center pt-3 ">
+            <div class="ml-auto mr-sm-5 ">
+                <button class="btn btn-success " type="submit " name="save " value="save">Next</button>
             </div>
         </div>
-
+    </form>
+    <div class="d-flex align-items-center pt-3 ">
+        <a href="{% url 'vitess_p' %}">
+            <div id="prev"> <button class="btn btn-primary">Previous</button> </div>
+        </a>
     </div>
-</form>
+</div>
+
 
 <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+    @import url(' https://fonts.googleapis.com/css2?family=Montserrat&display=swap ');
     * {
         margin: 0;
         padding: 0;
@@ -34,12 +143,13 @@
     }
     
     .container {
-        background-color: #555;
-        color: #ddd;
+        background-color: rgb(240, 230, 230);
+        color: rgb(19, 5, 5);
         border-radius: 10px;
         padding: 20px;
-        font-family: 'Montserrat', sans-serif;
-        max-width: 700px
+        font-family: 'Montserrat ', sans-serif;
+        max-width: 700px;
+        display: none;
     }
     
     .container>p {
@@ -126,6 +236,147 @@
             word-spacing: 2px
         }
     }
+    /* jusquae là */
+    
+    @import url('https://maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css');
+    #team {
+        background: #eee !important;
+    }
+    
+    .btn-primary:hover,
+    .btn-primary:focus {
+        background-color: #108d6f;
+        border-color: #108d6f;
+        box-shadow: none;
+        outline: none;
+    }
+    
+    .btn-primary {
+        color: #fff;
+        background-color: #007b5e;
+        border-color: #007b5e;
+    }
+    
+    section {
+        padding: 60px 0;
+    }
+    
+    section .section-title {
+        text-align: center;
+        color: #007b5e;
+        margin-bottom: 50px;
+        text-transform: uppercase;
+    }
+    
+    #team .card {
+        border: none;
+        background: #ffffff;
+    }
+    
+    .image-flip:hover .backside,
+    .image-flip.hover .backside {
+        -webkit-transform: rotateY(0deg);
+        -moz-transform: rotateY(0deg);
+        -o-transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        transform: rotateY(0deg);
+        border-radius: .25rem;
+    }
+    
+    .image-flip:hover .frontside,
+    .image-flip.hover .frontside {
+        -webkit-transform: rotateY(180deg);
+        -moz-transform: rotateY(180deg);
+        -o-transform: rotateY(180deg);
+        transform: rotateY(180deg);
+    }
+    
+    .mainflip {
+        -webkit-transition: 1s;
+        -webkit-transform-style: preserve-3d;
+        -ms-transition: 1s;
+        -moz-transition: 1s;
+        -moz-transform: perspective(1000px);
+        -moz-transform-style: preserve-3d;
+        -ms-transform-style: preserve-3d;
+        transition: 1s;
+        transform-style: preserve-3d;
+        position: relative;
+    }
+    
+    .frontside {
+        position: relative;
+        -webkit-transform: rotateY(0deg);
+        -ms-transform: rotateY(0deg);
+        z-index: 2;
+        margin-bottom: 30px;
+    }
+    
+    .backside {
+        position: absolute;
+        top: 0;
+        left: 0;
+        background: white;
+        -webkit-transform: rotateY(-180deg);
+        -moz-transform: rotateY(-180deg);
+        -o-transform: rotateY(-180deg);
+        -ms-transform: rotateY(-180deg);
+        transform: rotateY(-180deg);
+        -webkit-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+        -moz-box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+        box-shadow: 5px 7px 9px -4px rgb(158, 158, 158);
+    }
+    
+    .frontside,
+    .backside {
+        -webkit-backface-visibility: hidden;
+        -moz-backface-visibility: hidden;
+        -ms-backface-visibility: hidden;
+        backface-visibility: hidden;
+        -webkit-transition: 1s;
+        -webkit-transform-style: preserve-3d;
+        -moz-transition: 1s;
+        -moz-transform-style: preserve-3d;
+        -o-transition: 1s;
+        -o-transform-style: preserve-3d;
+        -ms-transition: 1s;
+        -ms-transform-style: preserve-3d;
+        transition: 1s;
+        transform-style: preserve-3d;
+    }
+    
+    .frontside .card,
+    .backside .card {
+        min-height: 312px;
+    }
+    
+    .backside .card a {
+        font-size: 18px;
+        color: #007b5e !important;
+    }
+    
+    .frontside .card .card-title,
+    .backside .card .card-title {
+        color: #007b5e !important;
+    }
+    
+    .frontside .card .card-body img {
+        width: 120px;
+        height: 120px;
+        border-radius: 50%;
+    }
 </style>
+
+<script>
+    const targetDiv = document.getElementById("third");
+    const btn = document.getElementById("toggle");
+    btn.onclick = function() {
+        if (targetDiv.style.display !== "none") {
+            targetDiv.style.display = "none";
+        } else {
+            targetDiv.style.display = "block";
+        }
+    };
+</script>
 
 {% endblock content %}
