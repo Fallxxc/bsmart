@@ -1,0 +1,30 @@
+{% extends 'accounts/main.html' %} {% block content %} {% load static %}
+<div class="card bg-with text-white" style="width: 85%; margin-right: 20px; margin-left: 100px; margin-top: 20px;">
+    <img class="card-img" src="https://scontent.fdkr3-1.fna.fbcdn.net/v/t1.6435-9/133935203_106057468087808_1786184776374948897_n.jpg?_nc_cat=106&ccb=1-4&_nc_sid=6e5ad9&_nc_ohc=_q3Fg46M8gwAX_rX6H2&_nc_ht=scontent.fdkr3-1.fna&oh=b636c578a87fb085757aed4cd6953e82&oe=613AFED2"
+        alt="Card image">
+    <div class="card-img-overlay">
+        <h5 class="card-title">Card title</h5>
+    </div>
+</div>
+
+<div class="container ">
+    <div class="card-columns" style="padding: 10px; margin: 20px;">
+        <div class="card" style="width:60rem;  align-items: center; height: 65rem; margin-left: 20px;">
+            <img class="card-img-top" src="http://kmit.in/emagazine/wp-content/uploads/2018/02/karnataka-results.jpg" alt="Card image cap">
+            <div class="card-body">
+                <h5 class="card-title"><button type="button" class="btn btn-primary btn-lg btn-radius">Categorie : {{ recup.0}} &nbsp;&nbsp;
+                </button></h5>
+                <p class="card-text"><button type="button" class="btn btn-secondary btn-lg btn-radius">Vitesse de Propagation: {{ recup.1}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></p>
+                <p class="card-text"><button type="button" class="btn btn-danger btn-lg btn-radius">Fréquence: {{ recup.2}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>                    </p>
+                <p class="card-text"><button type="button" class="btn btn-warning btn-lg btn-radius">Profondeur: {{ recup.3}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></p>
+                <p class="card-text"><button type="button" class="btn btn-info btn-lg btn-radius">Niveau de conrôle: {{ recup.4}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></p>
+                <p class="card-text"><button type="button" class="btn btn-dark btn-lg btn-radius">Niveau de perte: {{ recup.5}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></p>
+                <button type="button" class="btn btn-outline-dark btn-lg btn-radius" style="color:black;">{{ filename }}</button>
+            </div>
+            <div style="margin-left: 60%;padding: 10px;">
+                <button type="button" class="btn btn-outline-dark btn-lg btn-radius" style="color:black;"><a href="{% static filename %}">Voir la fiche d'action</a></button>
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock content %}}

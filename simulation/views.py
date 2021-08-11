@@ -20,6 +20,7 @@ from django.http import FileResponse, Http404
 import sys
 from simulation.form import  CreateUserForm 
 from .models import * 
+# from alerte.decorators import unauthenticated_user, allowed_user, admin_only
 
 
 # @unauthenticated_user
@@ -43,7 +44,7 @@ def loginPage(request):
         user = authenticate(request, username = username, password = password)
         if user is not None:
             login(request, user)
-            return redirect('')
+            return redirect('home')
         else:
             messages.info(request,'Username or password is incorrect')
     context = {}            
@@ -57,6 +58,7 @@ def logoutUser(request):
 # @allowed_user(allowed_roles=['admin', 'autres'])
 def home(request):#liste les buckets
     return render(request,'accounts/home.html')
+
 def alerte(request): 
     cat= Categorie.objects.all()
     vp= VitessePropagation.objects.all()
@@ -73,14 +75,14 @@ def alerte(request):
         'niveauControle':nc,
         'niveauPerte':np,
     }
-    return render(request,'alert.html', context)
+    return render(request,'alerte/alert.html', context)
     
 def cate(request): 
     cat= Categorie.objects.all()
     context={
             "categorie":cat
           }
-    return render(request,'cate.html', context)
+    return render(request,'alerte/cate.html', context)
 
 def vitess_p(request): #1
     vp= VitessePropagation.objects.all()
@@ -91,7 +93,7 @@ def vitess_p(request): #1
             return var    
     context={
         "vitessePropagation":vp }
-    return render(request,'vitessepropa.html', context)
+    return render(request,'alerte/vitessepropa.html', context)
 
 
 def frequence(request): #2
@@ -107,7 +109,7 @@ def frequence(request): #2
             return recup
     context={
         "frequence":fr }
-    return render(request,'frequence.html', context)
+    return render(request,'alerte/frequence.html', context)
 
 def profondeur(request):#3
     pro= Profondeur.objects.all()
@@ -123,7 +125,7 @@ def profondeur(request):#3
     context={
         'profondeur':pro,
     }
-    return render(request,'profondeur.html', context)
+    return render(request,'alerte/profondeur.html', context)
 
 def niveauControle(request):#4
     nic  = profond()
@@ -139,7 +141,7 @@ def niveauControle(request):#4
     context={
         'niveauControle':nc
             }
-    return render(request,'nivocontrol.html', context)
+    return render(request,'alerte/nivocontrol.html', context)
 
 def niveauPerte(request):
     nip  = niveaucon()
@@ -155,7 +157,7 @@ def niveauPerte(request):
     context={
         'niveauPerte':np
     }
-    return render(request,'nivoperte.html', context)
+    return render(request,'alerte/nivoperte.html', context)
 
 
 from collections import Iterable
@@ -396,13 +398,17 @@ def simulation(request):
     else:
         pass
     
+    for i in range(0, len(data)-1):
+        if data[i] == None:
+            data[i]='Aucun choix'
+    print(data)
     context={
         'recup':data,
         'filename':filename
     }
-    return render (request, 'simulation.html', context) 
+    return render (request, 'alerte/simulation.html', context) 
 
 # @login_required(login_url = 'login')    
 # @allowed_user(allowed_roles=['admin', 'autres'])
 def attaque(request):#liste les buckets
-    return render(request,'attaque.html')
+    return render(request,'attaque/attaque.html')
