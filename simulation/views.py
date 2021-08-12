@@ -59,6 +59,13 @@ def logoutUser(request):
 def home(request):#liste les buckets
     return render(request,'accounts/home.html')
 
+
+
+                ############################################################################
+                #                            LA GESTION DES ALERTE                         #
+                ############################################################################    
+
+
 def alerte(request): 
     cat= Categorie.objects.all()
     vp= VitessePropagation.objects.all()
@@ -408,7 +415,72 @@ def simulation(request):
     }
     return render (request, 'alerte/simulation.html', context) 
 
-# @login_required(login_url = 'login')    
-# @allowed_user(allowed_roles=['admin', 'autres'])
-def attaque(request):#liste les buckets
-    return render(request,'attaque/attaque.html')
+                ############################################################################
+                #                            LA GESTION DES ATTAQUE                        #
+                ############################################################################    
+
+def Natureinformation(request): 
+    natureinfo= NatureInformation.objects.all()
+    context={
+            "natureinfo":natureinfo
+          }
+    return render(request,'attaque/naturinfo.html', context)
+
+
+def Parutioninfo(request): #1
+    paruinfo= Parution.objects.all()
+    if request.method == 'POST':
+        var = request.POST.get('natureinfo')
+        global nature_info
+        def nature_info():
+            return var    
+    context={
+        "paruinfo":paruinfo }
+    return render(request,'attaque/paruinfo.html', context)
+
+
+def Perceptsupport(request): #2
+    nat_info = nature_info()
+    recup = []
+    recup.append(nat_info)
+    percepsupport= Perceptionsupport.objects.all()
+    if request.method == 'POST':
+        var = request.POST.get('paruinfo')
+        recup.append(var)
+        global paru_info
+        def paru_info():
+            return recup
+    context={
+        "percepsupport":percepsupport }
+    return render(request,'attaque/perceptionsupport.html', context)
+
+def Rebondinfo(request):#3
+    rebond= Rebond.objects.all()
+    rb = paru_info()
+    recup2 = []
+    recup2.append(rb)
+    if request.method == 'POST':
+        var = request.POST.get('percepsupport')
+        recup2.append(var)
+        global rebond_info
+        def rebond_info():
+            return recup2
+    context={
+        'rebond':rebond
+    }
+    return render(request,'attaque/rebond.html', context)
+import pandas as pd
+def simulationattack(request):
+    filename = '' 
+    sim_attack = rebond_info()
+    recup5, data = [],[]
+    recup5.append(sim_attack)
+    if request.method == 'POST':
+        nip  = request.POST.get('rebond')
+        recup5.append(nip)    
+    data= list(flatten(recup5))
+    context={
+        'recup':data,
+        'filename':filename
+    }
+    return render (request, 'attaque/simulationattack.html', context)
