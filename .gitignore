@@ -66,3 +66,4 @@ celerybeat.pid
 
 # editor
 .vscode/
+local_settings.py
