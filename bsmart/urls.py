@@ -18,9 +18,16 @@ from django.urls import path
 from django.conf import settings
 from django.conf.urls.static import static
 from django.urls import path, include
+from django.conf.urls import handler404, handler400, handler403, handler500
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('simulation.urls')),
 ]
 urlpatterns +=static(settings.MEDIA_URL, document_root = settings.MEDIA_ROOT) 
 urlpatterns +=static(settings.STATIC_URL, document_root = settings.STATIC_ROOT) 
+
+
+handler404 = 'simulation.views.custom_page_not_found_view'
+handler500 = 'simulation.views.custom_error_view'
+handler403 = 'simulation.views.custom_permission_denied_view'
+handler400 = 'simulation.views.custom_bad_request_view'

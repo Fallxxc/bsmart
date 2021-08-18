@@ -59,6 +59,50 @@ class Niveaualerte(models.Model):
     def __str__(self):
         return f"{self.niveau_alerte}"
 
+# GESTION DES ATTAQUES
+
+class NatureInformation(models.Model):
+    natur_info = models.CharField(max_length = 200, blank = True)
+    updated = models.DateTimeField(auto_now = True)
+    created = models.DateTimeField(auto_now_add = True)
+
+    def __str__(self):
+        return f"{self.natur_info}"
+
+
+class Qualification(models.Model):
+    qualification = models.CharField(max_length = 200, blank = True)
+    updated = models.DateTimeField(auto_now = True)
+    created = models.DateTimeField(auto_now_add = True)
+
+    def __str__(self):
+        return f"{self.qualification}"
+
+
+class Parution(models.Model):
+    espace_parution = models.CharField(max_length = 200, blank = True)
+    updated = models.DateTimeField(auto_now = True)
+    created = models.DateTimeField(auto_now_add = True)
+
+    def __str__(self):
+        return f"{self.espace_parution}"
+
+class Perceptionsupport(models.Model):
+    credibilite = models.CharField(max_length = 200, blank = True)
+    updated = models.DateTimeField(auto_now = True)
+    created = models.DateTimeField(auto_now_add = True)
+
+    def __str__(self):
+        return f"{self.credibilite}"        
+
+class Rebond(models.Model):
+    rebond = models.CharField(max_length = 200, blank = True)
+    updated = models.DateTimeField(auto_now = True)
+    created = models.DateTimeField(auto_now_add = True)
+
+    def __str__(self):
+        return f"{self.rebond}"
+
 
 
 

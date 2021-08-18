@@ -59,6 +59,13 @@ def logoutUser(request):
 def home(request):#liste les buckets
     return render(request,'accounts/home.html')
 
+
+
+                ############################################################################
+                #                            LA GESTION DES ALERTE                         #
+                ############################################################################    
+
+
 def alerte(request): 
     cat= Categorie.objects.all()
     vp= VitessePropagation.objects.all()
@@ -408,7 +415,213 @@ def simulation(request):
     }
     return render (request, 'alerte/simulation.html', context) 
 
-# @login_required(login_url = 'login')    
-# @allowed_user(allowed_roles=['admin', 'autres'])
-def attaque(request):#liste les buckets
-    return render(request,'attaque/attaque.html')
+                ############################################################################
+                #                            LA GESTION DES ATTAQUE                        #
+                ############################################################################    
+
+def Natureinformation(request): 
+    natureinfo= NatureInformation.objects.all()
+    context={
+            "natureinfo":natureinfo
+          }
+    return render(request,'attaque/naturinfo.html', context)
+
+
+def Parutioninfo(request): #1
+    paruinfo= Parution.objects.all()
+    if request.method == 'POST':
+        var = request.POST.get('natureinfo')
+        global nature_info
+        def nature_info():
+            return var    
+    context={
+        "paruinfo":paruinfo }
+    return render(request,'attaque/paruinfo.html', context)
+
+
+def Perceptsupport(request): #2
+    nat_info = nature_info()
+    recup = []
+    recup.append(nat_info)
+    percepsupport= Perceptionsupport.objects.all()
+    if request.method == 'POST':
+        var = request.POST.get('paruinfo')
+        recup.append(var)
+        global paru_info
+        def paru_info():
+            return recup
+    context={
+        "percepsupport":percepsupport }
+    return render(request,'attaque/perceptionsupport.html', context)
+
+def Rebondinfo(request):#3
+    rebond= Rebond.objects.all()
+    rb = paru_info()
+    recup2 = []
+    recup2.append(rb)
+    if request.method == 'POST':
+        var = request.POST.get('percepsupport')
+        recup2.append(var)
+        global rebond_info
+        def rebond_info():
+            return recup2
+    context={
+        'rebond':rebond
+    }
+    return render(request,'attaque/rebond.html', context)
+
+def simulationattack(request):
+    filename = ''
+    action = '' 
+    sim_attack = rebond_info()
+    recup5, data = [],[]
+    recup5.append(sim_attack)
+    if request.method == 'POST':
+        nip  = request.POST.get('rebond')
+        recup5.append(nip)    
+    data= list(flatten(recup5))
+    Action1 = ['Fausse (Fake news)',          	"Page RS de l'entreprise",   	"Image de l'entreprise",	"RAS"]         
+    Action2 =['Fausse (Fake news)',          	"Page RS de l'entreprise",   	"Image de l'entreprise",	"Effectif"]      
+    Action3 =['Fausse (Fake news)',          	"Fil de discussion RS / Blog",	"Crédible",             	"RAS"]	         
+    Action4 =['Fausse (Fake news)',          	"Fil de discussion RS / Blog",	"Crédible",             	"Effectif"]    	 
+    Action5 =['Fausse (Fake news)',          	"Fil de discussion RS / Blog",	"Pas crédible",	            "RAS"]       	 
+    Action6 =['Fausse (Fake news)',          	"Fil de discussion RS / Blog",	"Pas crédible",	            "Effectif"]    	 
+    Action7 =['Fausse (Fake news)',          	"Article Site d'actualité",	    "Crédible",             	"RAS"]       	 
+    Action8 =['Fausse (Fake news)',          	"Article Site d'actualité",	    "Crédible",             	"Effectif"]    	 
+    Action9 =['Fausse (Fake news)',          	"Article Site d'actualité",	    "Pas crédible",	            "RAS"]       	 
+    Action10=['Fausse (Fake news)',          	"Article Site d'actualité",	    "Pas crédible",	            "Effectif"]    	  
+    Action11=['Fausse (Fake news)',          	"Presse",                   	"Crédible",             	"RAS"]       	  
+    Action12=['Fausse (Fake news)',          	"Presse",                   	"Crédible",             	"Effectif"]    	  
+    Action13=['Fausse (Fake news)',          	"Presse",                   	"Pas crédible",	            "RAS"]       	 
+    Action14=['Fausse (Fake news)',          	"Presse",                   	"Pas crédible",	            "Effectif"]    	  
+    Action15=['Mi-figue Mi-raisin (bashing)',	"Page RS de l'entreprise",   	"Image de l'entreprise",	"RAS"]       	  
+    Action16=['Mi-figue Mi-raisin (bashing)',	"Page RS de l'entreprise",   	"Image de l'entreprise",	"Effectif"]    	  
+    Action17=['Mi-figue Mi-raisin (bashing)',	"Fil de discussion RS / Blog",	"Crédible",             	"RAS"]       	  
+    Action18=['Mi-figue Mi-raisin (bashing)',	"Fil de discussion RS / Blog",	"Crédible",             	"Effectif"]    	  
+    Action19=['Mi-figue Mi-raisin (bashing)',	"Fil de discussion RS / Blog",	"Pas crédible",	            "RAS"]       	  
+    Action20=['Mi-figue Mi-raisin (bashing)',	"Fil de discussion RS / Blog",	"Pas crédible",	            "Effectif"]    	  
+    Action21=['Mi-figue Mi-raisin (bashing)',	"Article Site d'actualité",	    "Crédible",             	"RAS"]       	  
+    Action22=['Mi-figue Mi-raisin (bashing)',	"Article Site d'actualité",	    "Crédible",             	"Effectif"]    	  
+    Action23=['Mi-figue Mi-raisin (bashing)',	"Article Site d'actualité",	    "Pas crédible",	            "RAS"]       	  
+    Action24=['Mi-figue Mi-raisin (bashing)',	"Article Site d'actualité",	    "Pas crédible",	            "Effectif"]    	  
+    Action25=['Mi-figue Mi-raisin (bashing)',	"Presse",                   	"Crédible",             	"RAS"]       	  
+    Action26=['Mi-figue Mi-raisin (bashing)',	"Presse",                   	"Crédible",             	"Effectif"]    	  
+    Action27=['Mi-figue Mi-raisin (bashing)',	"Presse",                   	"Pas crédible",	            "RAS"]       	  
+    Action28=['Mi-figue Mi-raisin (bashing)',	"Presse",                   	"Pas crédible",	            "Effectif"]    	  
+    Action29=['100% vrai (knocking)',         	"Page RS de l'entreprise",   	"Image de l'entreprise",	"RAS"]       	  
+    Action30=['100% vrai (knocking)',         	"Page RS de l'entreprise",   	"Image de l'entreprise",	"Effectif"]    	  
+    Action31=['100% vrai (knocking)',         	"Fil de discussion RS / Blog",	"Crédible",             	"RAS"]       	  
+    Action32=['100% vrai (knocking)',         	"Fil de discussion RS / Blog",	"Crédible",             	"Effectif"]    	  
+    Action33=['100% vrai (knocking)',         	"Fil de discussion RS / Blog",	"Pas crédible",	            "RAS"]       	  
+    Action34=['100% vrai (knocking)',         	"Fil de discussion RS / Blog",	"Pas crédible",	            "Effectif"]    	  
+    Action35=['100% vrai (knocking)',         	"Article Site d'actualité",	    "Crédible",              	"RAS"]       	  
+    Action36=['100% vrai (knocking)',         	"Article Site d'actualité",	    "Crédible",              	"Effectif"]    	  
+    Action37=['100% vrai (knocking)',         	"Article Site d'actualité",	    "Pas crédible",	            "RAS"]       	  
+    Action38=['100% vrai (knocking)',         	"Article Site d'actualité",	    "Pas crédible",	            "Effectif"]    	  
+    Action39=['100% vrai (knocking)',         	"Presse",                   	"Crédible",             	"RAS"]       	  
+    Action40=['100% vrai (knocking)',         	"Presse",                   	"Crédible",             	"Effectif"]    	  
+    Action41=['100% vrai (knocking)',         	"Presse",                   	"Pas crédible",	            "RAS"]       	  
+    Action42=['100% vrai (knocking)',         	"Presse",                   	"Pas crédible",	            "Effectif"]  
+    if data == Action1:
+        action="Réponse directe argumentée"
+    elif data == Action2:
+        action="Démenti"
+    elif data == Action3:
+        action="Réponse directe argumentée"
+    elif data == Action4: 
+        action="Droit de réponse"
+    elif data == Action5:
+        action="Pas de réaction"
+    elif data == Action6:
+        action="Démenti"
+    elif data == Action7: 
+        action="Démenti"   
+    elif data == Action8:
+        action="Démenti"
+    elif data == Action9:
+        action="Pas de réaction"
+    elif data == Action10:
+        action="Démenti"
+    elif data == Action11:
+        action="Démenti"
+    elif data == Action12:
+        action="Démenti"        
+    elif data == Action13:
+        action="Pas de réaction"
+    elif data == Action14:
+        action="Démenti"
+    elif data == Action15:
+        action="Réponse directe argumentée"
+    elif data == Action16:
+        action="Capitalisation image"
+    elif data == Action17:
+        action="Pas de réaction"
+    elif data == Action18:
+        action="Capitalisation image / Canal influ..."
+    elif data == Action19:
+        action="Pas de réaction"
+    elif data == Action20:
+        action="Capitalisation image / Canal influ..."
+    elif data == Action21:
+        action="Pas de réaction"
+    elif data == Action22:
+        action="Capitalisation sur image (Exemple ..."
+    elif data == Action23:
+        action="Pas de réaction"
+    elif data == Action24:
+        action="Capitalisation sur image (Exemple R..."    
+    elif data == Action25:
+        action="Pas de réaction"
+    elif data == Action26:
+        action="Capitalisation sur image (Exemple ..."
+    elif data == Action27:
+        action="Pas de réaction"
+    elif data == Action28:
+        action="Capitalisation sur image (Exemple ..."
+    elif data == Action29:
+        action="Prise en charge"
+    elif data == Action30:
+        action="Capitalisation sur image (Exemple ..."
+    elif data == Action31:
+        action="Prise en charge"
+    elif data == Action32:
+        action="Capitalisation sur image (Exemple ..."
+    elif data == Action33:
+        action="Prise en charge"
+    elif data == Action34:
+        action="Capitalisation sur image (Exemple ..."
+    elif data == Action35:
+        action="Pas de réaction"
+    elif data == Action36:
+        action="Reconnaissance + Perspective ou ré..."
+    elif data == Action37:
+        action="Pas de réaction"
+    elif data == Action38:
+        action="Capitalisation sur image (Exemple ..."
+    elif data == Action39:
+        action="Pas de réaction"
+    elif data == Action40:
+        action="Reconnaissance + Perspective ou ré..."
+    elif data == Action41:
+        action="Pas de réaction"
+    elif data == Action42:
+        action="Capitalisation sur image (Exemple ..."            
+
+    context={
+        'recup':data,
+        'filename':action
+    }
+    return render (request, 'attaque/simulationattack.html', context)
+
+
+def custom_page_not_found_view(request, exception):
+    return render(request, "errors/404.html", {})
+
+def custom_error_view(request, exception=None):
+    return render(request, "errors/500.html", {})
+
+def custom_permission_denied_view(request, exception=None):
+    return render(request, "errors/403.html", {})
+
+def custom_bad_request_view(request, exception=None):
+    return render(request, "errors/400.html", {})

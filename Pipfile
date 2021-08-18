@@ -11,6 +11,9 @@ pillow = "*"
 environ = "*"
 django-environ = "*"
 gunicorn = "*"
+pandas = "*"
+xlrd = "*"
+openpyxl = "*"
 
 [dev-packages]
 
