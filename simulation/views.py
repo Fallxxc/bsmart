@@ -403,12 +403,11 @@ def simulation(request):
     elif data==sec20:
         filename = 'SECUR20.pdf'
     else:
-        pass
+        filename = "Aucune fiche d'action ne correspond aux choix effectués"
     
-    for i in range(0, len(data)-1):
+    for i in range(0, len(data)):
         if data[i] == None:
             data[i]='Aucun choix'
-    print(data)
     context={
         'recup':data,
         'filename':filename
@@ -606,7 +605,13 @@ def simulationattack(request):
         action="Pas de réaction"
     elif data == Action42:
         action="Capitalisation sur image (Exemple ..."            
+    else:
+        action = "Aucun plan d'action ne correspond aux choix effectués"
 
+    for i in range(0, len(data)):
+        if data[i] == None:
+            data[i]='Aucun choix'    
+    
     context={
         'recup':data,
         'filename':action
