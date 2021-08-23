@@ -414,6 +414,7 @@ def simulation(request):
     }
     return render (request, 'alerte/simulation.html', context) 
 
+
                 ############################################################################
                 #                            LA GESTION DES ATTAQUE                        #
                 ############################################################################    
@@ -607,6 +608,7 @@ def simulationattack(request):
         action="Capitalisation sur image (Exemple ..."            
     else:
         action = "Aucun plan d'action ne correspond aux choix effectués"
+
 
     for i in range(0, len(data)):
         if data[i] == None:
