@@ -54,7 +54,7 @@ def logoutUser(request):
 	logout(request)
 	return redirect('login')
 
-# @login_required(login_url = 'login')    
+@login_required(login_url = 'login')    
 # @allowed_user(allowed_roles=['admin', 'autres'])
 def home(request):#liste les buckets
     return render(request,'accounts/home.html')
@@ -65,7 +65,7 @@ def home(request):#liste les buckets
                 #                            LA GESTION DES ALERTE                         #
                 ############################################################################    
 
-
+@login_required(login_url = 'login')    
 def alerte(request): 
     cat= Categorie.objects.all()
     vp= VitessePropagation.objects.all()
@@ -83,7 +83,8 @@ def alerte(request):
         'niveauPerte':np,
     }
     return render(request,'alerte/alert.html', context)
-    
+
+@login_required(login_url = 'login')        
 def cate(request): 
     cat= Categorie.objects.all()
     context={
@@ -91,6 +92,7 @@ def cate(request):
           }
     return render(request,'alerte/cate.html', context)
 
+@login_required(login_url = 'login')    
 def vitess_p(request): #1
     vp= VitessePropagation.objects.all()
     if request.method == 'POST':
@@ -102,7 +104,7 @@ def vitess_p(request): #1
         "vitessePropagation":vp }
     return render(request,'alerte/vitessepropa.html', context)
 
-
+@login_required(login_url = 'login')    
 def frequence(request): #2
     v = vitess()
     recup = []
@@ -118,6 +120,7 @@ def frequence(request): #2
         "frequence":fr }
     return render(request,'alerte/frequence.html', context)
 
+@login_required(login_url = 'login')    
 def profondeur(request):#3
     pro= Profondeur.objects.all()
     pr = freq()
@@ -134,6 +137,7 @@ def profondeur(request):#3
     }
     return render(request,'alerte/profondeur.html', context)
 
+@login_required(login_url = 'login')    
 def niveauControle(request):#4
     nic  = profond()
     recup3 = []
@@ -150,6 +154,7 @@ def niveauControle(request):#4
             }
     return render(request,'alerte/nivocontrol.html', context)
 
+@login_required(login_url = 'login')    
 def niveauPerte(request):
     nip  = niveaucon()
     recup4 = []
@@ -168,6 +173,7 @@ def niveauPerte(request):
 
 
 from collections import Iterable
+
 def flatten(lis):
      for item in lis:
          if isinstance(item, Iterable) and not isinstance(item, str):
@@ -176,6 +182,7 @@ def flatten(lis):
          else:        
              yield item
 
+@login_required(login_url = 'login')    
 def simulation(request):
     filename = '' 
     sim = nivopert()
@@ -418,7 +425,7 @@ def simulation(request):
                 ############################################################################
                 #                            LA GESTION DES ATTAQUE                        #
                 ############################################################################    
-
+@login_required(login_url = 'login')    
 def Natureinformation(request): 
     natureinfo= NatureInformation.objects.all()
     context={
@@ -427,6 +434,7 @@ def Natureinformation(request):
     return render(request,'attaque/naturinfo.html', context)
 
 
+@login_required(login_url = 'login')    
 def Parutioninfo(request): #1
     paruinfo= Parution.objects.all()
     if request.method == 'POST':
@@ -439,6 +447,7 @@ def Parutioninfo(request): #1
     return render(request,'attaque/paruinfo.html', context)
 
 
+@login_required(login_url = 'login')    
 def Perceptsupport(request): #2
     nat_info = nature_info()
     recup = []
@@ -454,6 +463,8 @@ def Perceptsupport(request): #2
         "percepsupport":percepsupport }
     return render(request,'attaque/perceptionsupport.html', context)
 
+
+@login_required(login_url = 'login')    
 def Rebondinfo(request):#3
     rebond= Rebond.objects.all()
     rb = paru_info()
@@ -470,6 +481,8 @@ def Rebondinfo(request):#3
     }
     return render(request,'attaque/rebond.html', context)
 
+
+@login_required(login_url = 'login')    
 def simulationattack(request):
     filename = ''
     action = '' 
@@ -620,15 +633,18 @@ def simulationattack(request):
     }
     return render (request, 'attaque/simulationattack.html', context)
 
-
+@login_required(login_url = 'login')    
 def custom_page_not_found_view(request, exception):
     return render(request, "errors/404.html", {})
 
+@login_required(login_url = 'login')    
 def custom_error_view(request, exception=None):
     return render(request, "errors/500.html", {})
 
+@login_required(login_url = 'login')    
 def custom_permission_denied_view(request, exception=None):
     return render(request, "errors/403.html", {})
 
+@login_required(login_url = 'login')    
 def custom_bad_request_view(request, exception=None):
     return render(request, "errors/400.html", {})
