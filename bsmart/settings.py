@@ -92,15 +92,10 @@ WSGI_APPLICATION = 'bsmart.wsgi.application'
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        "HOST": env("POSTGRES_MAIN_DB_HOST"),
-        "PORT": env("POSTGRES_MAIN_DB_PORT"),
-        "NAME": env("POSTGRES_MAIN_DB_NAME"),
-        "USER": env("POSTGRES_MAIN_DB_USER"),
-        "PASSWORD": env("POSTGRES_MAIN_DB_PASSWORD"),
-        'CONN_MAX_AGE': 0
-    },
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
 
 
