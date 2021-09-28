@@ -10,6 +10,7 @@ For the full list of settings and their values, see
 https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
+import environ
 from pathlib import Path
 
 # Build paths inside the project like this: BASE_DIR / 'subdir'.
@@ -23,17 +24,16 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*a94uhvk0e0k6^$^f*@z+h%vp8to80d86iz)8!3@(!_(e(#3lh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True #False
+DEBUG = True  # False
 
 ALLOWED_HOSTS = ['*']
-import environ
 env = environ.Env(
     POSTGRES_MAIN_DB_HOST=(str, ""),
     POSTGRES_MAIN_DB_PORT=(int, 0),
     POSTGRES_MAIN_DB_NAME=(str, ""),
     POSTGRES_MAIN_DB_USER=(str, ""),
     POSTGRES_MAIN_DB_PASSWORD=(str, ""),
-    )
+)
 
 # Application definition
 
@@ -51,6 +51,7 @@ INSTALLED_APPS = [
 
 MIDDLEWARE = [
     'django.middleware.security.SecurityMiddleware',
+    "whitenoise.middleware.WhiteNoiseMiddleware",
     'django.contrib.sessions.middleware.SessionMiddleware',
     'django.middleware.common.CommonMiddleware',
     'django.middleware.csrf.CsrfViewMiddleware',
@@ -91,17 +92,11 @@ WSGI_APPLICATION = 'bsmart.wsgi.application'
 # }
 
 DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.postgresql_psycopg2',
-        "HOST": env("POSTGRES_MAIN_DB_HOST"),
-        "PORT": env("POSTGRES_MAIN_DB_PORT"),
-        "NAME": env("POSTGRES_MAIN_DB_NAME"),
-        "USER": env("POSTGRES_MAIN_DB_USER"),
-        "PASSWORD": env("POSTGRES_MAIN_DB_PASSWORD"),
-        'CONN_MAX_AGE': 0
-    },
+    "default": {
+        "ENGINE": "django.db.backends.sqlite3",
+        "NAME": BASE_DIR / "db.sqlite3",
+    }
 }
-
 
 
 # Password validation
@@ -135,22 +130,16 @@ USE_I18N = True
 USE_L10N = True
 
 USE_TZ = True
-import os
 
-# Static files (CSS, JavaScript, Images)
-# https://docs.djangoproject.com/en/3.2/howto/static-files/
 
-STATIC_URL = '/static/'
-STATICFILES_DIRS = [
-  BASE_DIR / 'static',
-#   BASE_DIR / 'alerte' /'static',
-#   BASE_DIR / 'simulation' /'static'
+STATIC_ROOT = BASE_DIR / "static"
 
-]
+STATIC_URL = "/static/"
 
-STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static", "static_root")
+STATICFILES_DIRS = [BASE_DIR, "bsmart/static"]
+MEDIA_ROOT = BASE_DIR / "media"
 MEDIA_URL = "/media/"
-MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "media_root")
+# STATICFILES_STORAGE = "whitenoise.storage.CompressedManifestStaticFilesStorage"
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
