@@ -36,7 +36,8 @@
 </div> -->
 <div class="w3-row w3-border" style="margin: 40px; ">
     <div style="margin-bottom:5px; margin-top: 15px; margin-left: 50px;">
-        <h3 style="margin-left: 2%"> <b> Récapitulatif des modalités</b></h3>
+        <h3> <b> Récapitulatif des modalités</b>
+        </h3>
     </div>
     <div class="w3-third w3-container" style="margin-top: 20px; margin-bottom: 20px; ">
         <div class="col-xs-12 col-sm-6 col-md-10">
@@ -90,13 +91,11 @@
                         <p class="card-text"><button type="button" class="btn btn-warning btn-lg btn-radius">Profondeur: {{ recup.3}}</button></p>
                         <p class="card-text"><button type="button" class="btn btn-info btn-lg btn-radius">Niveau de conrôle: {{ recup.4}}</button></p>
                         <p class="card-text"><button type="button" class="btn btn-dark btn-lg btn-radius">Niveau de perte: {{ recup.5}}</button></p>
-                        <h4 class="card-text" style="color:black; margin-left: 25%;">{{ filename }}</h4>
+                        <h4 class="card-text" style="color:black; margin-left: 10%;">{{ filename }}</h4>
                     </div>
-                    <div style="margin-left: 60%;padding: 10px;">
-                        {% if filename in "Aucune fiche d'action ne correspond aux choix effectués" %}{{ filname}}
-                        <!-- <button type="button " class="btn btn-outline-danger btn-lg btn-radius " style="color:black; ">pas de fiche de decision</button> -->
-                        {% else %}
-                        <button type="button " class="btn btn-outline-dark btn-lg btn-radius " style="color:black; "><a href="{% static filename %} ">Générer fiche de décision </a></button> {% endif %}
+                    <div style="margin-left: 30%;padding: 10px;">
+                        {% if filename in "Aucune fiche d'action ne correspond aux choix effectués" %}{{ filname}} {% else %}
+                        <button type="button" class="btn btn-outline-dark btn-lg btn-radius " style="color:black; "><a href="{% static filename %} ">Générer fiche de décision </a></button> {% endif %}
 
                     </div>
                 </div>
