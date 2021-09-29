@@ -413,7 +413,7 @@ def simulation(request):
         filename = "Aucune fiche d'action ne correspond aux choix effectués"
     
     for i in range(0, len(data)):
-        if data[i] == None:
+        if data[i] == None or data[i]== " ":
             data[i]='Aucun choix'
     context={
         'recup':data,

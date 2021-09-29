@@ -11,14 +11,15 @@ body {
     background-color: rgb(231, 224, 224)
 }
 
-.container {
+
+/* .container {
     background-color: white;
     color: rgb(19, 5, 5);
     border-radius: 10px;
     font-family: 'Montserrat ', sans-serif;
     max-width: 700px;
     display: none;
-}
+} */
 
 .container>p {
     font-size: 32px
