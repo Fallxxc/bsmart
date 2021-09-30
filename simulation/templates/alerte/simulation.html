@@ -1,39 +1,4 @@
 {% extends 'accounts/main.html' %} {% block content %}{% load static %}
-<!-- <div class="card bg-with text-white" style="width: 85%; margin-right: 20px; margin-left: 200px; margin-top: 20px;">
-    <img class="card-img" src="{% static 'img/bsmart_result' %}" lt="Card image">
-    <img src="{% static  'b-Smart-Logo-SOS-ATTACK.png' %}" alt="..." height="50px" width="60px" tyle="border-radius: 20px; margin-right: 20px; ">
-
-    <div class="card-img-overlay">
-        <h5 class="card-title">Card title</h5>
-    </div>
-</div>
-<div class="container-fluid" style="padding: 10px; margin: 20px; margin-left: 400px;">
-    <div class="card-columns">
-        <div class="card" style="width:60rem;  align-items: center; height: 65rem; margin-left: 20px;">
-            <img class="card-img-top" src="http://kmit.in/emagazine/wp-content/uploads/2018/02/karnataka-results.jpg" alt="Card image cap">
-            <div class="card-body">
-                <h5 class="card-title"><button type="button" class="btn btn-primary btn-lg btn-radius">Categorie : {{ recup.0}} &nbsp;&nbsp;
-                </button></h5>
-                <p class="card-text"><button type="button" class="btn btn-secondary btn-lg btn-radius">Vitesse de Propagation: {{ recup.1}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></p>
-                <p class="card-text"><button type="button" class="btn btn-danger btn-lg btn-radius">Fréquence: {{ recup.2}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button>                    </p>
-                <p class="card-text"><button type="button" class="btn btn-warning btn-lg btn-radius">Profondeur: {{ recup.3}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></p>
-                <p class="card-text"><button type="button" class="btn btn-info btn-lg btn-radius">Niveau de conrôle: {{ recup.4}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></p>
-                <p class="card-text"><button type="button" class="btn btn-dark btn-lg btn-radius">Niveau de perte: {{ recup.5}}&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</button></p>
-                <button type="button" class="btn btn-outline-dark btn-lg btn-radius" style="color:black;">{{ filename }}</button>
-            </div>
-
-            <div style="margin-left: 60%;padding: 10px;">
-                {% if filename in "Aucune fiche d'action ne correspond aux choix effectués" %}
-                <button type="button" class="btn btn-outline-dark btn-lg btn-radius" style="color:black;">pas de fiche de decision</button> {% else %}
-                <button type="button" class="btn btn-outline-dark btn-lg btn-radius" style="color:black;"><a href="{% static filename %}">Voir la fiche d'action</a></button> {% endif %}
-
-            </div>
-        </div>
-    </div>
-</div> -->
-<!-- <div style="margin: 2%;">
-    <h3 style="margin-left: 2%"> <b> Récapitulatif des modalités</b></h3>
-</div> -->
 <div class="w3-row w3-border" style="margin: 40px; ">
     <div style="margin-bottom:5px; margin-top: 15px; margin-left: 50px;">
         <h3> <b> Récapitulatif des modalités</b>
@@ -91,12 +56,12 @@
                         <p class="card-text"><button type="button" class="btn btn-warning btn-lg btn-radius">Profondeur: {{ recup.3}}</button></p>
                         <p class="card-text"><button type="button" class="btn btn-info btn-lg btn-radius">Niveau de conrôle: {{ recup.4}}</button></p>
                         <p class="card-text"><button type="button" class="btn btn-dark btn-lg btn-radius">Niveau de perte: {{ recup.5}}</button></p>
-                        <h4 class="card-text" style="color:black; margin-left: 10%;">{{ filename }}</h4>
                     </div>
-                    <div style="margin-left: 30%;padding: 10px;">
-                        {% if filename in "Aucune fiche de décision ne correspond aux choix effectués" %}
-                        <p>{{ filename }}</p>{% else %}
-                        <button type="button" class="btn btn-outline-dark btn-lg btn-radius " style="color:black; "><a href="{% static filename %} ">Générer fiche de décision </a></button> {% endif %}
+                    <div style="text-align: center;padding: 20px; font-size: 20px;">
+                        {% if "Aucune fiche de décision ne correspond aux choix effectués" in filename %}
+                        <p> {{ filename }} </p>{% else %}
+                        <button type="button" class="btn btn-outline-dark btn-lg btn-radius " style="color:black; ">
+                            <a href="{% static filename %} ">Générer fiche de décision </a></button> {% endif %}
 
                     </div>
                 </div>
