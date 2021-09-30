@@ -148,7 +148,8 @@ section .section-title {
     background: #ffffff;
 }
 
-.image-flip:hover .backside,
+
+/* .image-flip:hover .backside,
 .image-flip.hover .backside {
     -webkit-transform: rotateY(0deg);
     -moz-transform: rotateY(0deg);
@@ -239,4 +240,4 @@ section .section-title {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-}
+} */
