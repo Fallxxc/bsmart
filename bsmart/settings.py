@@ -24,7 +24,11 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-*a94uhvk0e0k6^$^f*@z+h%vp8to80d86iz)8!3@(!_(e(#3lh'
 
 # SECURITY WARNING: don't run with debug turned on in production!
+<<<<<<< HEAD
 DEBUG = True  # False
+=======
+DEBUG = True
+>>>>>>> 9e1d5dee32c0eecbb3681a8fb36ab13996d02f81
 
 ALLOWED_HOSTS = ['*']
 env = environ.Env(
@@ -45,7 +49,6 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
 
-    'profiles',
     'simulation',
 ]
 
@@ -132,7 +135,15 @@ USE_L10N = True
 USE_TZ = True
 
 
+<<<<<<< HEAD
 STATIC_ROOT = BASE_DIR / "static"
+=======
+STATIC_URL = '/static/'
+STATICFILES_DIRS = [
+  BASE_DIR / 'static',
+#   BASE_DIR / 'alerte' /'static',
+#   BASE_DIR / 'src' /'static'
+>>>>>>> 9e1d5dee32c0eecbb3681a8fb36ab13996d02f81
 
 STATIC_URL = "/static/"
 

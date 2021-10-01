@@ -20,7 +20,6 @@ from django.http import FileResponse, Http404
 import sys
 from simulation.form import  CreateUserForm 
 from .models import * 
-# from alerte.decorators import unauthenticated_user, allowed_user, admin_only
 
 
 # @unauthenticated_user
@@ -55,8 +54,7 @@ def logoutUser(request):
 	return redirect('login')
 
 @login_required(login_url = 'login')    
-# @allowed_user(allowed_roles=['admin', 'autres'])
-def home(request):#liste les buckets
+def home(request):
     return render(request,'accounts/home.html')
 
 
@@ -64,25 +62,6 @@ def home(request):#liste les buckets
                 ############################################################################
                 #                            LA GESTION DES ALERTE                         #
                 ############################################################################    
-
-@login_required(login_url = 'login')    
-def alerte(request): 
-    cat= Categorie.objects.all()
-    vp= VitessePropagation.objects.all()
-    fr= Frequence.objects.all()
-    pr= Profondeur.objects.all()
-    nc= NiveauControle.objects.all()
-    np= NiveauPerte.objects.all()
-    func(request)
-    context={
-        "categorie":cat,
-        'vitessePropagation':vp,
-        'frequence':fr,
-        'profondeur':pr,
-        'niveauControle':nc,
-        'niveauPerte':np,
-    }
-    return render(request,'alerte/alert.html', context)
 
 @login_required(login_url = 'login')        
 def cate(request): 
@@ -92,80 +71,63 @@ def cate(request):
           }
     return render(request,'alerte/cate.html', context)
 
+vitess = ''
 @login_required(login_url = 'login')    
 def vitess_p(request): #1
     vp= VitessePropagation.objects.all()
     if request.method == 'POST':
         var = request.POST.get('categorie')
         global vitess
-        def vitess():
-            return var    
+        vitess = var 
     context={
         "vitessePropagation":vp }
     return render(request,'alerte/vitessepropa.html', context)
 
+freq = ''
 @login_required(login_url = 'login')    
 def frequence(request): #2
-    v = vitess()
-    recup = []
-    recup.append(v)
     fr= Frequence.objects.all()
     if request.method == 'POST':
         var = request.POST.get('vitessePropagation')
-        recup.append(var)
         global freq
-        def freq():
-            return recup
+        freq = var
     context={
         "frequence":fr }
     return render(request,'alerte/frequence.html', context)
 
+profond = ''
 @login_required(login_url = 'login')    
 def profondeur(request):#3
     pro= Profondeur.objects.all()
-    pr = freq()
-    recup2 = []
-    recup2.append(pr)
     if request.method == 'POST':
         var = request.POST.get('frequence')
-        recup2.append(var)
         global profond
-        def profond():
-            return recup2
+        profond = var
     context={
         'profondeur':pro,
     }
     return render(request,'alerte/profondeur.html', context)
 
+niveaucon = ''
 @login_required(login_url = 'login')    
 def niveauControle(request):#4
-    nic  = profond()
-    recup3 = []
-    recup3.append(nic)
     nc= NiveauControle.objects.all()
     if request.method == 'POST':
         var = request.POST.get('profondeur')
-        recup3.append(var)
         global niveaucon
-        def niveaucon():
-            return recup3
+        niveaucon = var 
     context={
         'niveauControle':nc
             }
     return render(request,'alerte/nivocontrol.html', context)
-
+nivopert = ''
 @login_required(login_url = 'login')    
 def niveauPerte(request):
-    nip  = niveaucon()
-    recup4 = []
-    recup4.append(nip)
     np= NiveauPerte.objects.all()
     if request.method == 'POST':
         var = request.POST.get('niveauControle')
-        recup4.append(var)
         global nivopert
-        def nivopert():
-            return recup4
+        nivopert = var
     context={
         'niveauPerte':np
     }
@@ -185,9 +147,12 @@ def flatten(lis):
 @login_required(login_url = 'login')    
 def simulation(request):
     filename = '' 
-    sim = nivopert()
     recup5, data = [],[]
-    recup5.append(sim)
+    recup5.append(vitess)
+    recup5.append(freq)
+    recup5.append(profond)
+    recup5.append(niveaucon)
+    recup5.append(nivopert)
     if request.method == 'POST':
         nip  = request.POST.get('niveauPerte')
         recup5.append(nip)    
@@ -236,25 +201,25 @@ def simulation(request):
     nat20=['Crise ou Catastrophe Naturelle','Rapide', 'Non récurrente' ,'Nationale'  ,'Hors Contrôle' ,'Matériel & Humain']
     
     # CATASTROPHE SECURITAIRE
-    sec1=['Crise ou Catastrophe Sécuritaire', 'Maitrisée',  'Récurrente', 'Locale', 'Sous contrôle', 'Matériel'] 
-    sec2=['Crise ou Catastrophe Sécuritaire', 'Maitrisée', 'Récurrente', 'Nationale', 'Sous contrôle', 'Matériel' ]
-    sec3=['Crise ou Catastrophe Sécuritaire', 'Maitrisée', 'Non récurrente', 'Locale', 'Sous contrôle','Matériel' ]
-    sec4=['Crise ou Catastrophe Sécuritaire', 'Maitrisée', 'Non récurrente', 'Nationale', 'Sous contrôle', 'Matériel']
-    sec5=['Crise ou Catastrophe Sécuritaire', 'Lente', 'Récurrente', 'Locale', 'Sous contrôle', 'Matériel']
+    sec1=['Crise ou Catastrophe Sécuritaire', 'Maitrisée', 'Récurrente', 'Locale', 'Sous Contrôle', 'Matériel'] 
+    sec2=['Crise ou Catastrophe Sécuritaire', 'Maitrisée', 'Récurrente', 'Nationale', 'Sous Contrôle', 'Matériel']
+    sec3=['Crise ou Catastrophe Sécuritaire', 'Maitrisée', 'Non récurrente', 'Locale', 'Sous Contrôle', 'Matériel']
+    sec4=['Crise ou Catastrophe Sécuritaire', 'Maitrisée', 'Non récurrente', 'Nationale', 'Sous Contrôle', 'Matériel']
+    sec5=['Crise ou Catastrophe Sécuritaire', 'Lente', 'Récurrente', 'Locale', 'Sous Contrôle', 'Matériel']
     sec6=['Crise ou Catastrophe Sécuritaire', 'Lente', 'Récurrente', 'Locale', 'Hors Contrôle' ,'Matériel & Humain' ]
-    sec7=['Crise ou Catastrophe Sécuritaire', 'Lente', 'Récurrente', 'Nationale','Sous contrôle', 'Matériel' ]
+    sec7=['Crise ou Catastrophe Sécuritaire', 'Lente', 'Récurrente', 'Nationale', 'Sous Contrôle', 'Matériel']
     sec8=['Crise ou Catastrophe Sécuritaire', 'Lente', 'Récurrente', 'Nationale', 'Hors Contrôle' ,'Matériel & Humain']
-    sec9=['Crise ou Catastrophe Sécuritaire', 'Lente', 'Non récurrente', 'Locale', 'Sous contrôle', 'Matériel']
+    sec9=['Crise ou Catastrophe Sécuritaire', 'Lente', 'Non récurrente', 'Locale', 'Sous Contrôle', 'Matériel']
     sec10=['Crise ou Catastrophe Sécuritaire', 'Lente', 'Non récurrente', 'Locale', 'Hors Contrôle' ,'Matériel & Humain']
-    sec11=['Crise ou Catastrophe Sécuritaire', 'Lente', 'Non récurrente','Nationale', 'Sous contrôle', 'Matériel']
+    sec11=['Crise ou Catastrophe Sécuritaire', 'Lente', 'Non récurrente', 'Nationale', 'Sous Contrôle', 'Matériel']
     sec12=['Crise ou Catastrophe Sécuritaire', 'Lente',  'Non récurrente','Nationale','Hors Contrôle' ,'Matériel & Humain']
-    sec13=['Crise ou Catastrophe Sécuritaire', 'Rapide', 'Récurrente', 'Locale', 'Sous contrôle', 'Matériel']
+    sec13=['Crise ou Catastrophe Sécuritaire', 'Rapide', 'Récurrente', 'Locale', 'Sous Contrôle', 'Matériel']
     sec14=['Crise ou Catastrophe Sécuritaire', 'Rapide', 'Récurrente', 'Locale','Hors Contrôle' ,'Matériel & Humain' ]
-    sec15=['Crise ou Catastrophe Sécuritaire', 'Rapide', 'Récurrente','Nationale', 'Sous contrôle', 'Matériel' ]
+    sec15=['Crise ou Catastrophe Sécuritaire', 'Rapide', 'Récurrente', 'Nationale', 'Sous Contrôle', 'Matériel']
     sec16=['Crise ou Catastrophe Sécuritaire', 'Rapide', 'Récurrente','Nationale','Hors Contrôle' ,'Matériel & Humain' ]
-    sec17=['Crise ou Catastrophe Sécuritaire', 'Rapide', 'Non récurrente', 'Locale', 'Sous contrôle','Matériel' ]
+    sec17=['Crise ou Catastrophe Sécuritaire', 'Rapide', 'Non récurrente', 'Locale', 'Sous Contrôle', 'Matériel']
     sec18=['Crise ou Catastrophe Sécuritaire', 'Rapide', 'Non récurrente', 'Locale', 'Hors Contrôle' ,'Matériel & Humain']
-    sec19=['Crise ou Catastrophe Sécuritaire', 'Rapide', 'Non récurrente', 'Nationale','Sous contrôle','Matériel']
+    sec19=['Crise ou Catastrophe Sécuritaire', 'Rapide', 'Non récurrente', 'Nationale','Sous Contrôle', 'Matériel']   
     sec20=['Crise ou Catastrophe Sécuritaire', 'Rapide', 'Non récurrente', 'Nationale','Hors Contrôle' ,'Matériel & Humain']
 
     # la gestion des catastroph sanitaire 
@@ -360,6 +325,7 @@ def simulation(request):
         filename = 'NATUREL20.pdf'
 
     # la gestion des Catastrophe securitaire
+
     elif data==sec1:
         filename = 'SECUR1.pdf'
     elif data==sec2:
@@ -410,11 +376,8 @@ def simulation(request):
     elif data==sec20:
         filename = 'SECUR20.pdf'
     else:
-        filename = "Aucune fiche d'action ne correspond aux choix effectués"
+        filename = "Aucune fiche de décision ne correspond aux choix effectués"
     
-    for i in range(0, len(data)):
-        if data[i] == None:
-            data[i]='Aucun choix'
     context={
         'recup':data,
         'filename':filename
@@ -433,49 +396,38 @@ def Natureinformation(request):
           }
     return render(request,'attaque/naturinfo.html', context)
 
-
+nature_info = ''
 @login_required(login_url = 'login')    
 def Parutioninfo(request): #1
     paruinfo= Parution.objects.all()
     if request.method == 'POST':
         var = request.POST.get('natureinfo')
         global nature_info
-        def nature_info():
-            return var    
+        nature_info = var
     context={
         "paruinfo":paruinfo }
     return render(request,'attaque/paruinfo.html', context)
 
-
+paru_info = ''
 @login_required(login_url = 'login')    
 def Perceptsupport(request): #2
-    nat_info = nature_info()
-    recup = []
-    recup.append(nat_info)
     percepsupport= Perceptionsupport.objects.all()
     if request.method == 'POST':
         var = request.POST.get('paruinfo')
-        recup.append(var)
         global paru_info
-        def paru_info():
-            return recup
+        paru_info = var    
     context={
         "percepsupport":percepsupport }
     return render(request,'attaque/perceptionsupport.html', context)
 
-
+rebond_info = ''
 @login_required(login_url = 'login')    
 def Rebondinfo(request):#3
     rebond= Rebond.objects.all()
-    rb = paru_info()
-    recup2 = []
-    recup2.append(rb)
     if request.method == 'POST':
         var = request.POST.get('percepsupport')
-        recup2.append(var)
         global rebond_info
-        def rebond_info():
-            return recup2
+        rebond_info = var
     context={
         'rebond':rebond
     }
@@ -484,17 +436,18 @@ def Rebondinfo(request):#3
 
 @login_required(login_url = 'login')    
 def simulationattack(request):
-    filename = ''
     action = '' 
-    sim_attack = rebond_info()
     recup5, data = [],[]
-    recup5.append(sim_attack)
+    recup5.append(nature_info)
+    recup5.append(paru_info)
+    recup5.append(rebond_info)
     if request.method == 'POST':
         nip  = request.POST.get('rebond')
-        recup5.append(nip)    
+        recup5.append(nip)   
     data= list(flatten(recup5))
-    Action1 = ['Fausse (Fake news)',          	"Page RS de l'entreprise",   	"Image de l'entreprise",	"RAS"]         
+    Action1 = ['Fausse (Fake news)',          	"Page RS de l'entreprise",   	"Image de l'entreprise",	"RAS"]   
     Action2 =['Fausse (Fake news)',          	"Page RS de l'entreprise",   	"Image de l'entreprise",	"Effectif"]      
+    
     Action3 =['Fausse (Fake news)',          	"Fil de discussion RS / Blog",	"Crédible",             	"RAS"]	         
     Action4 =['Fausse (Fake news)',          	"Fil de discussion RS / Blog",	"Crédible",             	"Effectif"]    	 
     Action5 =['Fausse (Fake news)',          	"Fil de discussion RS / Blog",	"Pas crédible",	            "RAS"]       	 
@@ -621,12 +574,9 @@ def simulationattack(request):
         action="Capitalisation sur image (Exemple ..."            
     else:
         action = "Aucun plan d'action ne correspond aux choix effectués"
-
-
     for i in range(0, len(data)):
         if data[i] == None:
             data[i]='Aucun choix'    
-    
     context={
         'recup':data,
         'filename':action
