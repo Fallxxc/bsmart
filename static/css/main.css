@@ -11,14 +11,15 @@ body {
     background-color: rgb(231, 224, 224)
 }
 
-.container {
+
+/* .container {
     background-color: white;
     color: rgb(19, 5, 5);
     border-radius: 10px;
     font-family: 'Montserrat ', sans-serif;
     max-width: 700px;
     display: none;
-}
+} */
 
 .container>p {
     font-size: 32px
@@ -147,7 +148,8 @@ section .section-title {
     background: #ffffff;
 }
 
-.image-flip:hover .backside,
+
+/* .image-flip:hover .backside,
 .image-flip.hover .backside {
     -webkit-transform: rotateY(0deg);
     -moz-transform: rotateY(0deg);
@@ -238,4 +240,4 @@ section .section-title {
     width: 120px;
     height: 120px;
     border-radius: 50%;
-}
+} */
