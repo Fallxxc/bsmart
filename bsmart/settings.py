@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/3.2/ref/settings/
 """
 
 import os 
-import django_heroku
 from pathlib import Path
 
 
@@ -28,8 +27,7 @@ SECRET_KEY = 'django-insecure-*a94uhvk0e0k6^$^f*@z+h%vp8to80d86iz)8!3@(!_(e(#3lh
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-# ALLOWED_HOSTS = ['*']
-ALLOWED_HOSTS = ['bsmart.herokuapp.com']
+ALLOWED_HOSTS = ['*']
 import environ
 env = environ.Env(
     POSTGRES_MAIN_DB_HOST=(str, ""),
@@ -155,7 +153,6 @@ STATIC_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "static_root
 MEDIA_URL = "/media/"
 MEDIA_ROOT = os.path.join(os.path.dirname(BASE_DIR), "static_cdn", "media_root")
 
-django_heroku.settings(locals())
 
 # Default primary key field type
 # https://docs.djangoproject.com/en/3.2/ref/settings/#default-auto-field
